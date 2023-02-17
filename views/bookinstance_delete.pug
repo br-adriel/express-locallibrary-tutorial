@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  h1 #{title}: #{bookinstance.imprint}
+  p Status: #{bookinstance.status}
+
+  if bookinstance.status !== 'Maintenance'
+    p #[strong Set the status to Maintenance before attempting to delete this book instance.]
+  else
+    p Do you really want to delete this book instance?
+
+    form(method='POST' action='')
+      div.form-group
+        input#bookinstanceid.form-control(type='hidden',name='bookinstanceid', required='true', value=bookinstance._id )
+
+      button.btn.btn-primary(type='submit') Delete
