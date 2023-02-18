@@ -1,16 +1,17 @@
 extends layout
 
+block head
+  link(rel='stylesheet', href='/stylesheets/list.css')
+
 block content
   h1= title
 
-  ul
+  ul.list
     each author in author_list
-      li
-        a(href=author.url) #{author.name}
-        |  (#{author.date_of_birth_formatted}
-        if author.date_of_birth && author.date_of_death 
-          |  -
-        |  #{author.date_of_death_formatted})
+      li.bg
+        p #{author.name} (#{author.date_of_birth_formatted} - #{author.date_of_death_formatted})
+        a(href=author.url title="Check author details")
+          i.bi.bi-eye
 
     else
-      li There are no authors.
+      li.bg There are no authors.

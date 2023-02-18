@@ -1,11 +1,16 @@
 extends layout
 
+block head
+  link(rel='stylesheet', href='/stylesheets/list.css')
+
 block content
   h1= title
 
-  ul
+  ul.list
     each genre in genre_list
-      li
-        a(href=genre.url) #{genre.name}
+      li.bg
+        p #{genre.name}
+        a(href=genre.url title="Check genre details")
+          i.bi.bi-eye
     else
-      li There are no genres.
+      li.bg There are no genres.

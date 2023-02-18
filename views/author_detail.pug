@@ -1,23 +1,30 @@
 extends layout
 
+block head
+  link(rel="stylesheet", href="/stylesheets/detail.css")
+
 block content
-  h1 Author: #{author.name}
-  p #{author.date_of_birth_formatted} - #{author.date_of_death_formatted}
+  h1 #{author.name}
+  
+  div.bg
+    p
+      b Date of birth:
+      |  #{author.date_of_birth_formatted || '-'}
+    p
+      b Date of death:
+      |  #{author.date_of_death_formatted || '-'}
 
-  div(style='margin-left:20px;margin-top:20px')
-    h4 Books
+  h4 Books
+  div.listing
+    each book in author_books
+      div.bg
+        a(href=book.url)
+          h5 #{book.title}
+        p #{book.summary}
+    else
+      p.bg This author has no books.
 
-    dl
-      each book in author_books
-        dt
-          a(href=book.url) #{book.title}
-        dd #{book.summary}
-      else
-        p This author has no books.
-
-  hr
-  p
-    a(href=author.url+'/delete') Delete author
-  p
-    a(href=author.url+'/update') Update author
+  div.buttons
+    a.btn(href=author.url+'/delete') Delete
+    a.btn(href=author.url+'/update') Update
 

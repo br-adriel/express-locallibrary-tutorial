@@ -3,7 +3,7 @@ extends layout
 block content
   h1=title
 
-  form(method='POST' action='')
+  form.bg(method='POST' action='')
     div.form-group
       label(for='book') Book:
       select#book.form-control(type='select' placeholder='Select book' name='book' required='true')
@@ -21,10 +21,10 @@ block content
     div.form-group
       label(for='status') Status:
       select#status.form-control(type='select' placeholder='Select status' name='status' required='true')
-        option(value='Maintenance' selected=(bookinstance.status === 'Maintenance')) Maintenance
-        option(value='Available' selected=(bookinstance.status === 'Available')) Available
-        option(value='Loaned' selected=(bookinstance.status === 'Loaned')) Loaned
-        option(value='Reserved' selected=(bookinstance.status === 'Reserved')) Reserved
+        option(value='Maintenance' selected=(bookinstance && bookinstance.status === 'Maintenance')) Maintenance
+        option(value='Available' selected=(bookinstance && bookinstance.status === 'Available')) Available
+        option(value='Loaned' selected=(bookinstance && bookinstance.status === 'Loaned')) Loaned
+        option(value='Reserved' selected=(bookinstance && bookinstance.status === 'Reserved')) Reserved
 
     button.btn.btn-primary(type='submit') Submit
 

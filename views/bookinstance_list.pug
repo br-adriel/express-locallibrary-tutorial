@@ -1,20 +1,29 @@
 extends layout
 
+block head
+  link(rel='stylesheet', href='/stylesheets/list.css')
+
 block content
   h1= title
 
-  ul
+  ul.list
     each val in bookinstance_list
-      li
-        a(href=val.url) #{val.book.title} : #{val.imprint} - 
+      li.bg.instance
+        h2
+          a(href=val.url)
+            i.bi.bi-journal
+            |  #{val.book.title}
+        p
+          i.bi.bi-printer
+          |  #{val.imprint}
         if val.status=='Available'
-          span.text-success #{val.status}
+          p.text-success Status: #{val.status}
         else if val.status=='Maintenance'
-          span.text-danger #{val.status}
+          p.text-danger Status: #{val.status}
         else
-          span.text-warning #{val.status}
+          p.text-warning Status: #{val.status}
         if val.status != 'Available'
-          span  (Due: #{val.due_back_formatted})
+          span Due: #{val.due_back_formatted}
 
     else
       li There are no book copies in this library.

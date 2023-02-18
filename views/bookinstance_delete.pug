@@ -1,16 +1,15 @@
 extends layout
 
 block content
-  h1 #{title}: #{bookinstance.imprint}
-  p Status: #{bookinstance.status}
+  h1(style="margin-bottom: 16px") Deleting: #{bookinstance.imprint}
 
   if bookinstance.status !== 'Maintenance'
-    p #[strong Set the status to Maintenance before attempting to delete this book instance.]
+    p.bg #[strong Set the status to Maintenance before attempting to delete this book instance.]
   else
     p Do you really want to delete this book instance?
 
     form(method='POST' action='')
       div.form-group
-        input#bookinstanceid.form-control(type='hidden',name='bookinstanceid', required='true', value=bookinstance._id )
+        input#bookinstanceid(type='hidden',name='bookinstanceid', required='true', value=bookinstance._id )
 
-      button.btn.btn-primary(type='submit') Delete
+      button.btn(type='submit') Delete
